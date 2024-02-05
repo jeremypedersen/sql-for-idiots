@@ -2,6 +2,8 @@
 
 Exactly what it sounds like. SQL notes for people (like me) who just can't seem to memorize the commands. We'll try to keep commands here ordered from simple to complex. 
 
+## Section 1: Basic Basics (Create and delete databases and tables, insert records)
+
 **Shoe what databases are available to work with**
 
 ```
@@ -52,5 +54,161 @@ SELECT * FROM employees;
 
 ```
 DROP TABLE employees;
+```
+
+**Insert a new record into a table**
+
+```
+INSERT INTO employees (employee_id, name, role) 
+VALUES (0, 'Jeremy', 'Founder');
+```
+
+**(*Shortcut*) insert a new record into a table, where all fields are specified**
+
+```
+INSERT INTO employees VALUES (0, 'Jeremy', 'Founder');
+```
+
+**Insert mutiple new records into a table**
+
+```
+INSERT INTO employees (employee_id, name, role) 
+VALUES 
+    (1, 'Erica', 'Co-Founder'),
+    (2, 'James', 'CFO'),
+    (3, 'Leslie', 'CTO');
+```
+
+**Create a table with *required* fields**
+
+```
+CREATE TABLE students (
+    name VARCHAR(80) NOT NULL,
+    gpa INT NOT NULL
+);
+```
+
+**Create a table with *required* fields and *default* values for those fields**
+
+```
+CREATE TABLE students (
+    name VARCHAR(80) NOT NULL DEFAULT 'noname',
+    gpa INT NOT NULL DEFAULT 0
+);
+```
+
+**Insert an empty record (defaults will get filled in)**
+
+```
+INSERT INTO students () VALUES ();
+```
+
+**Insert a record where only some fields are specified**
+
+```
+INSERT INTO students (name) VALUES ('James');
+```
+
+**Create a table with a primary key**
+
+```
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    team_id INT NOT NULL
+);
+```
+
+**Create a table with a primary key that increments on its own**
+
+```
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    team_id INT NOT NULL
+);
+```
+
+**Insert records into a table with a primary key (identical-looking records can still be differentiated using the primary key)**
+
+```
+INSERT INTO employees (name, team_id) 
+VALUES 
+    ('Bob', 25),
+    ('Bob', 25),
+    ('Bob', 25);
+```
+
+**(*Optional*) another way to create a primary key which auto-increments**
+
+```
+CREATE TABLE employees (
+    employee_id INT AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    team_id INT NOT NULL,
+    PRIMARY KEY(employee_id)
+);
+```
+
+## Section 2: Working with data (CRUD operations)
+
+**CRUD = Create, Read, Update, Delete**
+
+### Create
+
+**Create a database**
+
+```
+CREATE DATABASE big_company;
+```
+
+**Create a table**
+
+```
+CREATE TABLE employees (
+    employee_id INT AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    team_id INT NOT NULL,
+    PRIMARY KEY(employee_id)
+);
+```
+
+**Create a record in a table**
+
+```
+INSERT INTO employees (name, team_id) VALUES ('Bob', 25);
+```
+
+### Read
+
+**Select all items from a table (*read*)**
+
+```
+SELECT * FROM employees;
+```
+
+**Select specific columns**
+
+```
+SELECT name FROM employees;
+```
+
+**Select records that meet a certain condition**
+
+```
+SELECT * FROM employees WHERE name = 'Bob';
+```
+
+*Note:* Just because we are using `WHERE` with a specific column, doesn't mean we have to `SELECT` that column. For instance, if I wanted to know which teams had an employee named "Bob", I could do this:
+
+```
+SELECT team_id FROM employees WHERE name = 'Bob' ;
+```
+*Note:* By default, string comparisons are *case insensitive* in MySQL. 
+
+**Select records where one column's value matches the value of another column**
+
+```
+SELECT * FROM employees where team_id = employee_id;
 ```
 
