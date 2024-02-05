@@ -212,3 +212,46 @@ SELECT team_id FROM employees WHERE name = 'Bob' ;
 SELECT * FROM employees where team_id = employee_id;
 ```
 
+**Rename one or more columns using `AS`**
+
+```
+SELECT employee_id AS id, name FROM employees; 
+```
+
+### Update
+
+**Update an existing row in a table**
+
+```
+UPDATE employees SET name = 'Other Bob' WHERE employee_id = 1;
+```
+
+**Update a single column for all rows at once**
+
+```
+UPDATE employees SET name = 'Whatever';
+```
+
+**Update multiple columns for all rows at once**
+
+```
+UPDATE employees SET name = 'Whatever', team_id = 0;
+```
+
+**Delete one row**
+
+```
+DELETE FROM employees WHERE employee_id = 1;
+```
+
+**Delete one or more rows that match a pattern**
+
+```
+DELETE FROM employees WHERE name = 'Whatever';
+```
+
+**Delete *all* rows**
+
+```
+DELETE FROM employees;
+```
