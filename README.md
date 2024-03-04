@@ -4,7 +4,7 @@ Exactly what it sounds like. SQL notes for people (like me) who just can't seem 
 
 ## Section 1: Basic Basics (Create and delete databases and tables, insert records)
 
-**Shoe what databases are available to work with**
+**Show what databases are available to work with**
 
 ```
 SHOW DATABASES;
@@ -38,7 +38,7 @@ CREATE TABLE employees (
 );
 ```
 
-**Describe a table (list its fields and datat types)**
+**Describe a table (list its fields and datatypes)**
 
 ```
 DESC employees;
@@ -79,7 +79,7 @@ VALUES
     (3, 'Leslie', 'CTO');
 ```
 
-**Create a table with *required* fields**
+**Create a table with *required* fields (meaning fields which cannot be `NULL`**
 
 ```
 CREATE TABLE students (
