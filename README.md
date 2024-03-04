@@ -261,3 +261,8 @@ DELETE FROM employees WHERE name = 'Whatever';
 ```
 DELETE FROM employees;
 ```
+
+## Section 3: Working with string functions
+
+Nothing to see here yet! Getting around to it...
+
