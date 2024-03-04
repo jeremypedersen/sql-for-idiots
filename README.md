@@ -16,6 +16,12 @@ SHOW DATABASES;
 CREATE DATABASE big_company;
 ```
 
+**Show which database is in use**
+
+```
+SELECT database();
+```
+
 **Select a database**
 
 ```
